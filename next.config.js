@@ -1,12 +1,23 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: [],
-  },
-  reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
-};
+const path = require('path')
 
-module.exports = nextConfig;
+const nextConfig = {
+    output: 'standalone',
+    reactStrictMode: true,
+    images: {
+        // domains: ['images.unsplash.com']
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+                port: '',
+                pathname: '/**'
+            }
+        ]
+    },
+    turbopack: {
+        root: path.join(__dirname)
+    }
+}
+
+module.exports = nextConfig
