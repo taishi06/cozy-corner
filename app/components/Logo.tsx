@@ -1,6 +1,9 @@
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Logo({ isScrolled }: { isScrolled: boolean }) {
+    const pathName = usePathname()
+
     return (
         <Link
             href="/"
@@ -8,10 +11,12 @@ export default function Logo({ isScrolled }: { isScrolled: boolean }) {
                 isScrolled
                     ? 'text-stone-900'
                     : // : 'text-stone-900 md:text-white'
-                      'text-stone-900'
+                      pathName === '/'
+                      ? 'text-white'
+                      : 'text-stone-900'
             }`}
         >
-            Cozy Corner
+            {process.env.NEXT_PUBLIC_APP_TITLE}
         </Link>
     )
 }

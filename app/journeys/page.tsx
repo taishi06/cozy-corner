@@ -35,7 +35,7 @@ export default function page() {
                     </p>
                 </div>
                 <button className="flex items-center gap-3 text-stone-900 border-b-2 border-stone-900 pb-2 uppercase tracking-[0.2em] text-[10px] font-bold hover:opacity-50 transition-all group">
-                    Download The Guide{' '}
+                    Download The Guide
                     <ExternalLink
                         size={14}
                         className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"

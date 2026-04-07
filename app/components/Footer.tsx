@@ -6,11 +6,10 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-20 text-stone-900">
                 <div className="md:col-span-2">
                     <h2 className="font-serif text-4xl mb-8 tracking-tighter">
-                        THE SANCTUARY.
+                        {process.env.NEXT_PUBLIC_APP_TITLE}.
                     </h2>
                     <p className="text-stone-400 max-w-sm text-sm leading-loose uppercase tracking-widest font-light">
-                        Architecture, nature, and stillness. A modern escape in
-                        Big Sur.
+                        Architecture and stillness. A modern escape in the City.
                     </p>
                 </div>
                 <div>
@@ -18,7 +17,7 @@ export default function Footer() {
                         Social
                     </h4>
                     <div className="flex flex-col gap-4 text-[11px] uppercase tracking-[0.2em] text-stone-500 font-bold">
-                        <a
+                        {/* <a
                             href="#"
                             className="hover:text-stone-900 transition-colors"
                         >
@@ -29,10 +28,12 @@ export default function Footer() {
                             className="hover:text-stone-900 transition-colors"
                         >
                             Pinterest
-                        </a>
+                        </a> */}
                         <a
-                            href="#"
+                            href="https://www.facebook.com/thecozycornersmdcleaf"
                             className="hover:text-stone-900 transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             Facebook
                         </a>
@@ -43,17 +44,22 @@ export default function Footer() {
                         Location
                     </h4>
                     <p className="text-[11px] uppercase tracking-widest text-stone-500 leading-loose font-medium">
-                        1242 Pacific Coast Hwy
+                        SMDC Leaf Residences
                         <br />
-                        Big Sur, CA 93920
+                        Susana Heights, Tunasan
                         <br />
-                        USA
+                        Muntinlupa City
+                        <br />
+                        Philippines
                     </p>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto mt-24 pt-10 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.5em] text-stone-300 font-bold">
-                <span>© 2026 The Sanctuary Retreat Estate</span>
-                <div className="flex gap-10">
+            <div className="max-w-7xl mx-auto mt-24 pt-10 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.5em] text-stone-500 font-bold">
+                <span>
+                    © {new Date().getFullYear()}{' '}
+                    {process.env.NEXT_PUBLIC_APP_TITLE}
+                </span>
+                {/* <div className="flex gap-10">
                     <a
                         href="#"
                         className="hover:text-stone-900 transition-colors"
@@ -66,7 +72,7 @@ export default function Footer() {
                     >
                         Terms
                     </a>
-                </div>
+                </div> */}
                 {/* <span>Designed by Studio Minimal</span> */}
             </div>
         </footer>

@@ -9,7 +9,38 @@ import { useRef } from 'react'
  * Includes Tailwind CDN for immediate preview rendering.
  */
 
+// const slides = [
+//     {
+//         path: '/images/slides/pool-area.jpg',
+//         alt: 'SMDC Leaf Residences pool area'
+//     },
+//     {
+//         path: '/images/slides/bedroom.jpeg',
+//         alt: 'SMDC Leaf Bedroom'
+//     },
+//     {
+//         path: '/images/slides/bldg-entrance.jpeg',
+//         alt: 'SMDC Bldg entrance'
+//     }
+// ]
+
 export default function App() {
+    // const [index, setIndex] = useState(0)
+    // const [isTransitioning, setIsTransitioning] = useState(false)
+
+    // const nextSlide = () => {
+    //     setIsTransitioning(true)
+    //     setTimeout(() => {
+    //         setIndex((prev) => (prev + 1) % slides.length)
+    //         setIsTransitioning(false)
+    //     }, 300)
+    // }
+
+    // useEffect(() => {
+    //     const interval = setInterval(nextSlide, 4000)
+    //     return () => clearInterval(interval)
+    // }, [])
+
     const sectionRef = useRef<any>()
 
     const scrollToExplore = () => {
@@ -22,13 +53,20 @@ export default function App() {
                 <Image
                     fill
                     quality={80}
-                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2000"
+                    src="/images/slides/pool-area.jpg"
                     className="object-cover scale-105 animate-slow-zoom"
-                    alt="Estate Exterior"
+                    alt="SMDC Leaf Residences pool area"
                 />
+                {/* <Image
+                    fill
+                    quality={80}
+                    src={slides[index]['path']}
+                    className={`object-cover scale-105 animate-slow-zoom transition-all duration-300 ${isTransitioning ? 'blur-md opacity-50 scale-105' : 'blur-0 opacity-100 scale-100'}`}
+                    alt={slides[index]['alt']}
+                /> */}
                 <div className="relative z-20 text-center px-6">
                     <span className="text-white uppercase tracking-[0.5em] text-[10px] md:text-xs mb-6 block font-medium">
-                        Private Estate • Modern Minimalist
+                        Relax • Unwind
                     </span>
                     <h1 className="font-serif text-6xl md:text-9xl text-white mb-10 leading-tight">
                         Stillness <br />{' '}
@@ -36,7 +74,7 @@ export default function App() {
                     </h1>
                     <button
                         onClick={scrollToExplore}
-                        className="bg-white text-stone-900 px-12 py-4 text-xs uppercase tracking-widest font-bold hover:bg-stone-100 transition-all shadow-xl active:scale-95"
+                        className="bg-white text-stone-900 px-12 py-4 text-xs cursor-pointer uppercase tracking-widest font-bold hover:bg-stone-100 transition-all shadow-xl active:scale-95"
                     >
                         Explore The Space
                     </button>
@@ -53,14 +91,14 @@ export default function App() {
                 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-24 items-center">
                     <div>
                         <h2 className="font-serif text-4xl md:text-6xl text-stone-900 mb-10 leading-[1.1]">
-                            A sanctuary designed for slow living.
+                            A sanctuary designed for comfort and relaxation.
                         </h2>
                         <p className="text-stone-600 text-lg leading-relaxed mb-10">
-                            Located on the edge of the Pacific, our unit is a
+                            Located at the City of Muntinlupa, our unit is a
                             curated experiment in architecture and comfort.
-                            We've stripped away the unnecessary to let the
-                            landscape speak for itself. Experience a retreat
-                            where time feels suspended.
+                            We've stripped away the unnecessary to let the place
+                            speak for itself. Experience a comfort where time
+                            feels suspended.
                         </p>
                         <div className="flex gap-4 items-center text-stone-900 font-bold uppercase tracking-widest text-xs group cursor-pointer border-b border-stone-900 w-fit pb-2">
                             <span>View Architecture</span>
@@ -73,14 +111,14 @@ export default function App() {
                     <div className="grid grid-cols-2 gap-6 relative">
                         <div className="relative overflow-hidden aspect-square">
                             <img
-                                src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=800"
+                                src="/images/room/bed-view.jpg"
                                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
                                 alt="Kitchen Detail"
                             />
                         </div>
                         <div className="relative overflow-hidden aspect-square mt-16">
                             <img
-                                src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800"
+                                src="/images/room/full-view.jpg"
                                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
                                 alt="Bedroom Detail"
                             />

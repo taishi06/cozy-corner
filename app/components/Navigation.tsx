@@ -14,6 +14,13 @@ export default function Navigation() {
     const pathName = usePathname()
 
     useEffect(() => {
+        // vertical scroll position
+        const currentVerticalScrollPos = window.scrollY
+        // check initial scroll position
+        if (currentVerticalScrollPos > 50) {
+            setIsScrolled(true)
+        }
+
         const handleScroll = () => setIsScrolled(window.scrollY > 50)
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
@@ -22,6 +29,7 @@ export default function Navigation() {
     const navLinks: NavLinkProps[] = [
         { name: 'Home', id: 'home', path: '/' },
         { name: 'About', id: 'about', path: '/about' },
+        { name: 'Gallery', id: 'gallery', path: '/gallery' },
         { name: 'Journeys', id: 'journeys', path: '/journeys' },
         { name: 'Contact', id: 'contact', path: '/contact' }
     ]
@@ -51,11 +59,7 @@ export default function Navigation() {
                     {isMenuOpen ? (
                         <X />
                     ) : (
-                        <Menu
-                            className={
-                                isScrolled ? 'text-stone-900' : 'text-white'
-                            }
-                        />
+                        <Menu className={isScrolled ? 'text-stone-900' : ''} />
                     )}
                 </button>
             </div>
@@ -87,7 +91,7 @@ function DesktopNavigation({
                 <Link
                     href={link.path as Route}
                     key={link.id}
-                    className={`text-[12px] uppercase tracking-[0.4em] transition-all ${pathName === link.path ? 'font-bold border-b border-current' : 'font-light'} ${isScrolled ? 'text-stone-900 hover:underline' : 'hover:text-white'}`}
+                    className={`text-[12px] uppercase tracking-[0.4em] transition-all hover:border-b hover:border-current ${pathName === link.path ? 'font-bold border-b border-current' : 'font-light border-b-transparent'} ${isScrolled ? 'text-stone-900' : pathName === '/' ? 'text-white' : ''}`}
                 >
                     {link.name}
                 </Link>
