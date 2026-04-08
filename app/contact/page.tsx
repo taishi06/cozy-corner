@@ -19,6 +19,8 @@ export default function Page() {
 
                     <div className="flex flex-col gap-6">
                         <a
+                            target="_blank"
+                            rel="noopener noreferrer"
                             href="https://www.airbnb.com/rooms/1314407911171467315"
                             className="flex items-center justify-between w-full p-8 bg-stone-900 text-white hover:bg-stone-800 transition-all group shadow-2xl"
                         >
@@ -38,15 +40,20 @@ export default function Page() {
                                     className="text-stone-400"
                                 />
                                 <h3 className="font-serif text-2xl">
-                                    Instant Messenger
+                                    Message us on Facebook
                                 </h3>
                             </div>
                             <p className="text-xs text-stone-400 mb-8 uppercase tracking-widest">
                                 Typical response: Under 10 minutes
                             </p>
-                            <button className="w-full py-5 border-2 border-stone-900 text-stone-900 uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-stone-900 hover:text-white transition-all active:scale-95">
-                                Open Messenger Chat
-                            </button>
+                            <a
+                                href="https://www.facebook.com/thecozycornersmdcleaf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-center py-5 border-2 border-stone-900 text-stone-900 uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-stone-900 hover:text-white transition-all active:scale-95"
+                            >
+                                Open Facebook Page
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -54,17 +61,14 @@ export default function Page() {
                 <div className="hidden md:block">
                     <div className="relative aspect-[3/4] p-10 border border-stone-200">
                         <img
-                            src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=800"
+                            src="/images/contact-chat.jpeg"
                             className="w-full h-full object-cover grayscale brightness-90"
                             alt="The Sanctuary Workspace"
                         />
                         <div className="absolute -bottom-10 -right-10 bg-white p-10 shadow-2xl max-w-xs">
                             <p className="font-serif text-2xl leading-tight mb-4 text-stone-900">
-                                "A truly ethereal experience in the wild."
+                                Have a chat with us to find out more.
                             </p>
-                            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-stone-300">
-                                — Vogue Travel
-                            </span>
                         </div>
                     </div>
                 </div>

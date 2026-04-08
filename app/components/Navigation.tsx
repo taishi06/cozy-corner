@@ -30,7 +30,7 @@ export default function Navigation() {
         { name: 'Home', id: 'home', path: '/' },
         { name: 'About', id: 'about', path: '/about' },
         { name: 'Gallery', id: 'gallery', path: '/gallery' },
-        { name: 'Journeys', id: 'journeys', path: '/journeys' },
+        // { name: 'Journeys', id: 'journeys', path: '/journeys' },
         { name: 'Contact', id: 'contact', path: '/contact' }
     ]
 

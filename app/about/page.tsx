@@ -1,4 +1,19 @@
 import Image from 'next/image'
+import AmenityList from '@/app/components/AmenityList'
+import Amenity from '@/app/components/Amenity'
+import {
+    Bed,
+    Car,
+    Cog,
+    Lock,
+    MapPin,
+    MapPinMinus,
+    ShowerHead,
+    Table2,
+    Tv2,
+    Wifi,
+    Wind
+} from 'lucide-react'
 
 export default function page() {
     return (
@@ -71,7 +86,7 @@ export default function page() {
                     </div>
                 </div>
 
-                <div>
+                <div className="mb-20">
                     <p className="text-stone-600 text-lg leading-loose mb-6">
                         One evening, while reminiscing about our past travels
                         and the places we had stayed in, an idea sparked. We
@@ -112,49 +127,88 @@ export default function page() {
                     </p>
                 </div>
 
-                <section className="bg-stone-900 text-stone-50 p-16 md:p-32 mb-40">
+                <section className="bg-stone-900 text-stone-50 p-16 md:p-32">
                     <div className="max-w-4xl">
                         <h2 className="font-serif text-5xl mb-16 leading-tight text-stone-50">
                             Amenities of Intention
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-12">
-                            <div className="border-l border-stone-700 pl-8">
-                                <h4 className="uppercase tracking-[0.4em] text-[10px] mb-4 opacity-40 font-bold">
-                                    01. Sound
-                                </h4>
-                                <p className="text-xl font-serif italic mb-2">
-                                    Analog Resonance
-                                </p>
-                                <p className="text-stone-400 text-sm">
-                                    Vintage turntable with a curated vinyl
-                                    collection from local record stores.
-                                </p>
-                            </div>
-                            <div className="border-l border-stone-700 pl-8">
-                                <h4 className="uppercase tracking-[0.4em] text-[10px] mb-4 opacity-40 font-bold">
-                                    02. Scent
-                                </h4>
-                                <p className="text-xl font-serif italic mb-2">
-                                    Earth Elements
-                                </p>
-                                <p className="text-stone-400 text-sm">
-                                    Custom-blended cedar, smoke, and moss
-                                    essential oils extracted on-site.
-                                </p>
-                            </div>
-                            <div className="border-l border-stone-700 pl-8">
-                                <h4 className="uppercase tracking-[0.4em] text-[10px] mb-4 opacity-40 font-bold">
-                                    03. Light
-                                </h4>
-                                <p className="text-xl font-serif italic mb-2">
-                                    Circadian Sync
-                                </p>
-                                <p className="text-stone-400 text-sm">
-                                    Smart lighting systems programmed to
-                                    transition with natural daylight.
-                                </p>
-                            </div>
-                            <div className="border-l border-stone-700 pl-8">
+                            <AmenityList icon={<ShowerHead />} name="Bathroom">
+                                <Amenity>Hair Dryer</Amenity>
+                                <Amenity>Cleaning Products</Amenity>
+                                <Amenity>Shampoo and Conditioner</Amenity>
+                                <Amenity>Body Shower Gel</Amenity>
+                                <Amenity>Bidet</Amenity>
+                                <Amenity>Outdoor Shower</Amenity>
+                                <Amenity>Hot Water</Amenity>
+                            </AmenityList>
+                            <AmenityList
+                                icon={<Bed />}
+                                name="Bedroom and Laundry"
+                            >
+                                <Amenity>
+                                    Essentials: Towels, Bed Sheets, Soap, and
+                                    Toilet Paper
+                                </Amenity>
+                                <Amenity>Hangers</Amenity>
+                                <Amenity>Bed Linens</Amenity>
+                                <Amenity>Extra Pillows and Blankets</Amenity>
+                                <Amenity>Room-darkening shades</Amenity>
+                            </AmenityList>
+                            <AmenityList icon={<Tv2 />} name="Entertainment">
+                                <Amenity>TV</Amenity>
+                            </AmenityList>
+                            <AmenityList
+                                icon={<Wifi />}
+                                name="Internet and Office"
+                            >
+                                <Amenity>Wifi</Amenity>
+                            </AmenityList>
+
+                            <AmenityList icon={<Lock />} name="Home Safety">
+                                <Amenity>Smart Door Lock</Amenity>
+                                <Amenity>Smoke Alarm</Amenity>
+                                <Amenity>Fire Extinguisher</Amenity>
+                            </AmenityList>
+                            <AmenityList
+                                icon={<Wind />}
+                                name="Heating and Cooling"
+                            >
+                                <Amenity>Air Conditioning</Amenity>
+                                <Amenity>Portable Fans</Amenity>
+                            </AmenityList>
+                            <AmenityList
+                                icon={<Table2 />}
+                                name="Kitchen and Dining"
+                            >
+                                <Amenity>Microwave</Amenity>
+                                <Amenity>Mini Fridge</Amenity>
+                                <Amenity>Hot Water Kettle</Amenity>
+                            </AmenityList>
+                            <AmenityList
+                                icon={<Car />}
+                                name="Parking and Facilities"
+                            >
+                                <Amenity>Pool</Amenity>
+                                <Amenity>Elevator</Amenity>
+                                <Amenity>Paid Parking on Premises</Amenity>
+                            </AmenityList>
+                            <AmenityList
+                                icon={<MapPin />}
+                                name="Location Features"
+                            >
+                                <Amenity>Private Entrance</Amenity>
+                                <Amenity>Laundromat Nearby</Amenity>
+                                <Amenity>Coffee Shop</Amenity>
+                            </AmenityList>
+                            <AmenityList icon={<Cog />} name="Services">
+                                <Amenity>
+                                    Long Term Stays allowed: Stay for 28 days or
+                                    more
+                                </Amenity>
+                                <Amenity>Self check-in and check-out</Amenity>
+                            </AmenityList>
+                            {/* <div className="border-l border-stone-700 pl-8">
                                 <h4 className="uppercase tracking-[0.4em] text-[10px] mb-4 opacity-40 font-bold">
                                     04. Sleep
                                 </h4>
@@ -165,7 +219,7 @@ export default function page() {
                                     100% organic French linen, weighted
                                     blankets, and eucalyptus silk.
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>

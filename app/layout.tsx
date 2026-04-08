@@ -19,10 +19,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                {/* <Navbar /> */}
                 <main>
                     <div className="min-h-screen bg-stone-50 font-sans selection:bg-stone-900 selection:text-white antialiased overflow-x-hidden">
-                        {/* <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
                         <Navigation />
 
                         <div className="content-wrapper">{children}</div>
