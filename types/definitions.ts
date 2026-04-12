@@ -10,3 +10,7 @@ interface JourneySpotProps {
     desc: string
     img: string
 }
+interface GalleryImage {
+    name?: string
+    files?: string[]
+}

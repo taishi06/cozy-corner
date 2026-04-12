@@ -2,103 +2,84 @@
 
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
-
-const gallery = [
-    {
-        src: '/images/gallery/img1.png',
-        title: 'Dog 1'
-    },
-    {
-        src: '/images/gallery/img2.png',
-        title: 'Dog 2'
-    },
-    {
-        src: '/images/gallery/img3.png',
-        title: 'Dog 3'
-    }
-]
+import { useEffect, useState } from 'react'
+import { getGalleryFoldersFiles } from '../actions/gallery'
+import Spinner from '../components/Spinner'
 
 export default function page() {
+    const [gallery, setGallery] = useState(null)
     const [selected, setSelected] = useState<null | {
-        src: string | undefined
-        title: string | undefined
+        name: string
+        image: string
+        files: string[]
     }>(null)
-    // const [index, setIndex] = useState(0)
-    // const [isTransitioning, setIsTransitioning] = useState(false)
+    const [images, setImages] = useState<string[]>([])
 
-    // const nextSlide = () => {
-    //     setIsTransitioning(true)
-    //     setTimeout(() => {
-    //         setIndex((prev) => (prev + 1) % images.length)
-    //         setIsTransitioning(false)
-    //     }, 300)
-    // }
-
-    // useEffect(() => {
-    //     const interval = setInterval(nextSlide, 4000)
-    //     return () => clearInterval(interval)
-    // }, [])
-
-    // get selected index
-    const selectedIndex = gallery.map((img) => img.src).indexOf(selected?.src)
-
+    // handle modal navigation
     const handleChangeSelected = (direction: string) => {
+        // get index from all images
+        const selectedImageIndex = images.indexOf(selected.image)
+
         // if prev and not yet first image of selected
-        if (direction === 'prev' && selectedIndex > 0) {
-            setSelected(gallery[selectedIndex - 1])
+        if (direction === 'prev' && selected) {
+            // get previous
+            const prevImage = images[selectedImageIndex - 1]
+
+            // index the prevImage's gallery
+            const prevImageGallery = gallery.filter(
+                (dir: GalleryImage) => dir.files.indexOf(prevImage) >= 0
+            )
+            setSelected({ ...prevImageGallery[0], image: prevImage })
         }
 
         // if next and not yet last image selected
-        if (direction === 'next' && selectedIndex < gallery.length - 1) {
-            setSelected(gallery[selectedIndex + 1])
+        if (direction === 'next' && selectedImageIndex < images.length - 1) {
+            // get next
+            const nextImage = images[selectedImageIndex + 1]
+
+            // index the nextImage's gallery
+            const nextImageGallery = gallery.filter(
+                (dir: GalleryImage) => dir.files.indexOf(nextImage) >= 0
+            )
+            setSelected({ ...nextImageGallery[0], image: nextImage })
         }
+    }
+
+    // get selected section index first
+    const selectedImagesIndex = images?.indexOf(selected?.image)
+
+    useEffect(() => {
+        const fetchGallery = async () => {
+            // fetch gallery images
+            const galleryImages = await getGalleryFoldersFiles()
+            setGallery(galleryImages)
+
+            // set images for later use
+            const images: string[] = []
+            galleryImages.forEach((gallery) => {
+                images.push(...gallery.files)
+            })
+            setImages(images)
+        }
+        fetchGallery()
+    }, [])
+
+    if (!gallery) {
+        return <Spinner />
     }
 
     return (
         <>
-            {/* <div className="pt-40 animate-in slide-in-from-bottom-6 duration-1000">
-                <div className="relative w-full h-[400px] overflow-hidden">
-                    <Image
-                        src={images[index]}
-                        alt="slider"
-                        fill
-                        className={`object-cover transition-all duration-300 ${isTransitioning ? 'blur-md opacity-50 scale-105' : 'blur-0 opacity-100 scale-100'}`}
-                    />
-                </div>
-            </div> */}
-
             <section className="pt-40 animate-in slide-in-from-bottom-6 duration-1000">
-                {/* SECTION TITLE */}
-                <h2 className="text-2xl font-semibold mb-4">
-                    Explore the Space
-                </h2>
-
-                {/* GALLERY GRID */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {gallery.map((item, i) => (
-                        <div
-                            key={i}
-                            onClick={() => setSelected(item)}
-                            className="relative cursor-pointer group overflow-hidden rounded-xl"
-                        >
-                            <Image
-                                src={item.src}
-                                alt={item.title}
-                                width={500}
-                                height={400}
-                                loading="lazy"
-                                className="object-cover w-full h-40 transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
-                            />
-
-                            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <span className="text-white font-medium">
-                                    {item.title}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                {gallery.map(
+                    (item: { name: string; files: string[] }, i: number) => (
+                        <GallerySection
+                            item={item}
+                            key={item.name}
+                            handleSelect={setSelected}
+                        />
+                    )
+                )}
 
                 {/* MODAL */}
                 {selected && (
@@ -113,17 +94,17 @@ export default function page() {
                         <div className="relative z-10 max-w-4xl w-full p-4">
                             <div className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden">
                                 <Image
-                                    src={selected.src}
-                                    alt={selected.title}
+                                    src={`/images/gallery/${selected.name}/${selected.image}`}
+                                    alt={selected.name}
                                     fill
                                     priority
                                     className="object-cover animate-blurFade"
                                 />
                             </div>
 
-                            <div className="grid grid-cols-3 gap-4">
+                            <div className="grid grid-cols-2 gap-4">
                                 <div className="mt-3 text-lg text-white">
-                                    {selectedIndex > 0 && (
+                                    {selectedImagesIndex > 0 && (
                                         <button
                                             onClick={() =>
                                                 handleChangeSelected('prev')
@@ -134,13 +115,14 @@ export default function page() {
                                         </button>
                                     )}
                                 </div>
-                                <div>
+                                {/* <div>
                                     <p className="text-white mt-3 text-center text-lg">
-                                        {selected.title}
+                                        {selected.image}
                                     </p>
-                                </div>
+                                </div> */}
                                 <div className="mt-3 text-lg text-white">
-                                    {selectedIndex < gallery.length - 1 && (
+                                    {selectedImagesIndex <
+                                        images.length - 1 && (
                                         <button
                                             onClick={() =>
                                                 handleChangeSelected('next')
@@ -157,5 +139,71 @@ export default function page() {
                 )}
             </section>
         </>
+    )
+}
+
+function GallerySection({
+    item,
+    handleSelect
+}: {
+    item: GalleryImage
+    handleSelect: Function
+}) {
+    return (
+        <div className="mb-10">
+            {/* SECTION TITLE */}
+            <h2 className="text-2xl font-semibold mb-4">{item.name}</h2>
+
+            {/* GALLERY GRID */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {item.files?.map((dir, i) => (
+                    <GalleryImage
+                        handleSelect={handleSelect}
+                        name={item.name}
+                        image={dir}
+                        files={item.files}
+                        key={i}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+function GalleryImage({
+    name,
+    image,
+    files,
+    handleSelect
+}: {
+    name: string
+    image: string
+    files: string[]
+    handleSelect: Function
+}) {
+    return (
+        <div
+            onClick={() =>
+                handleSelect({
+                    name,
+                    image,
+                    files
+                })
+            }
+            className="relative cursor-pointer group overflow-hidden rounded-xl"
+        >
+            <Image
+                src={`/images/gallery/${name}/${image}`}
+                alt={image}
+                width={500}
+                height={400}
+                loading="lazy"
+                className="object-cover w-full h-40 transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
+            />
+
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                <span className="text-white font-medium">{image}</span>
+            </div>
+        </div>
     )
 }
