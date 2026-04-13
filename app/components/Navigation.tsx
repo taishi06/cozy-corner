@@ -7,6 +7,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Route } from 'next'
 
+const navLinks: NavLinkProps[] = [
+    { name: 'Home', id: 'home', path: '/' },
+    { name: 'About', id: 'about', path: '/about' },
+    { name: 'Gallery', id: 'gallery', path: '/gallery' },
+    // { name: 'Journeys', id: 'journeys', path: '/journeys' },
+    { name: 'Contact', id: 'contact', path: '/contact' }
+]
+
 export default function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,14 +33,6 @@ export default function Navigation() {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
-
-    const navLinks: NavLinkProps[] = [
-        { name: 'Home', id: 'home', path: '/' },
-        { name: 'About', id: 'about', path: '/about' },
-        { name: 'Gallery', id: 'gallery', path: '/gallery' },
-        // { name: 'Journeys', id: 'journeys', path: '/journeys' },
-        { name: 'Contact', id: 'contact', path: '/contact' }
-    ]
 
     return (
         <nav

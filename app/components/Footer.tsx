@@ -1,5 +1,3 @@
-import styles from './Footer.module.css'
-
 export default function Footer() {
     return (
         <footer className="bg-white border-t border-stone-100 py-24 px-6">
@@ -17,18 +15,6 @@ export default function Footer() {
                         Social
                     </h4>
                     <div className="flex flex-col gap-4 text-[11px] uppercase tracking-[0.2em] text-stone-500 font-bold">
-                        {/* <a
-                            href="#"
-                            className="hover:text-stone-900 transition-colors"
-                        >
-                            Instagram
-                        </a>
-                        <a
-                            href="#"
-                            className="hover:text-stone-900 transition-colors"
-                        >
-                            Pinterest
-                        </a> */}
                         <a
                             href="https://www.facebook.com/thecozycornersmdcleaf"
                             className="hover:text-stone-900 transition-colors"
@@ -59,21 +45,6 @@ export default function Footer() {
                     © {new Date().getFullYear()}{' '}
                     {process.env.NEXT_PUBLIC_APP_TITLE}
                 </span>
-                {/* <div className="flex gap-10">
-                    <a
-                        href="#"
-                        className="hover:text-stone-900 transition-colors"
-                    >
-                        Privacy
-                    </a>
-                    <a
-                        href="#"
-                        className="hover:text-stone-900 transition-colors"
-                    >
-                        Terms
-                    </a>
-                </div> */}
-                {/* <span>Designed by Studio Minimal</span> */}
             </div>
         </footer>
     )

@@ -105,9 +105,11 @@
             transform: scale(1.15);
         }
     }
+
     .animate-slow-zoom {
         animation: slow-zoom 25s infinite alternate ease-in-out;
     }
+
     ::selection {
         background: #1c1917;
         color: #fafaf9;
@@ -124,5 +126,18 @@
     }
     ::-webkit-scrollbar-thumb:hover {
         background: #a8a29e;
+    }
+}
+
+@theme {
+    --animate-fadein: fadein 1s ease-out forwards;
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 100;
+        }
     }
 }

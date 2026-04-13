@@ -5,7 +5,6 @@ const nextConfig = {
     output: 'standalone',
     reactStrictMode: true,
     images: {
-        // domains: ['images.unsplash.com']
         remotePatterns: [
             {
                 protocol: 'https',
@@ -17,7 +16,8 @@ const nextConfig = {
     },
     turbopack: {
         root: path.join(__dirname)
-    }
+    },
+    devIndicators: false
 }
 
 module.exports = nextConfig
