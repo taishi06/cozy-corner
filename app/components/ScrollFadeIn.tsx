@@ -1,13 +1,13 @@
 import { ReactNode, useEffect, useRef } from 'react'
 
 export default function ScrollFadeIn({ children }: { children: ReactNode }) {
-    const ref = useRef()
+    const ref = useRef<HTMLDivElement | null>()
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting && ref.current) {
-                    ref?.current?.classList.add('animate-fadein')
+                    ref.current.classList.add('animate-fadein')
                 }
             },
             { threshold: 0.1 }

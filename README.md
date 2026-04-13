@@ -1,15 +1,15 @@
-# Airbnb Worldwise
+# Cozy Prime Stay
 
-A travel and Airbnb showcase website built with Next.js.
+An Airbnb Unit showcase website built with Next.js.
 
 ## Features
 
 - Static Site Generation
-- Worldwise travel pages
 - Airbnb showcase
 - Optimized images
 - SEO-ready
 - GitHub CI
+- Worldwise travel pages(todo)
 
 ## Tech Stack
 
