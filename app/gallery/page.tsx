@@ -76,8 +76,11 @@ export default function page() {
         <>
             <section className="pt-40">
                 <ScrollFadeIn>
-                    <header className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8">
-                        <h1 className="font-serif text-7xl md:text-9xl text-stone-900 leading-none">
+                    <header className="mb-10 flex flex-col md:flex-row justify-between items-end gap-8">
+                        {/* <h1 className="font-serif text-7xl md:text-9xl text-stone-900 leading-none">
+                            The Place.
+                        </h1> */}
+                        <h1 className="font-serif text-7xl text-stone-900 mb-10 italic">
                             The Place.
                         </h1>
                         <p className="text-stone-500 uppercase tracking-widest text-xs font-bold md:mb-4">
@@ -144,7 +147,7 @@ export default function page() {
                             />
                         }
                     >
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-3 gap-4">
                             <div className="mt-3 text-lg text-white">
                                 {selectedImagesIndex > 0 && (
                                     <button

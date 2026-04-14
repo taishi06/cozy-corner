@@ -7,7 +7,8 @@ export default function Footer() {
                         {process.env.NEXT_PUBLIC_APP_TITLE}.
                     </h2>
                     <p className="text-stone-400 max-w-sm text-sm leading-loose uppercase tracking-widest font-light">
-                        Architecture and stillness. A modern escape in the City.
+                        Architecture and stillness defined. A modern escape in
+                        the City.
                     </p>
                 </div>
                 <div>

@@ -23,7 +23,10 @@ export default function page() {
             <div className="max-w-6xl mx-auto">
                 <ScrollFadeIn>
                     <header className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8">
-                        <h1 className="font-serif text-7xl md:text-9xl text-stone-900 leading-none">
+                        {/* <h1 className="font-serif text-7xl md:text-9xl text-stone-900 leading-none">
+                            Our Story.
+                        </h1> */}
+                        <h1 className="font-serif text-7xl text-stone-900 mb-10 italic">
                             Our Story.
                         </h1>
                         <p className="text-stone-500 uppercase tracking-widest text-xs font-bold md:mb-4">
@@ -133,10 +136,7 @@ export default function page() {
                                 <Amenity>Outdoor Shower</Amenity>
                                 <Amenity>Hot Water</Amenity>
                             </AmenityList>
-                            <AmenityList
-                                icon={<Bed />}
-                                name="Bedroom and Laundry"
-                            >
+                            <AmenityList icon={<Bed />} name="Bedroom">
                                 <Amenity>
                                     Essentials: Towels, Bed Sheets, Soap, and
                                     Toilet Paper
@@ -149,10 +149,7 @@ export default function page() {
                             <AmenityList icon={<Tv2 />} name="Entertainment">
                                 <Amenity>TV</Amenity>
                             </AmenityList>
-                            <AmenityList
-                                icon={<Wifi />}
-                                name="Internet and Office"
-                            >
+                            <AmenityList icon={<Wifi />} name="Internet">
                                 <Amenity>Wifi</Amenity>
                             </AmenityList>
 
@@ -161,12 +158,9 @@ export default function page() {
                                 <Amenity>Smoke Alarm</Amenity>
                                 <Amenity>Fire Extinguisher</Amenity>
                             </AmenityList>
-                            <AmenityList
-                                icon={<Wind />}
-                                name="Heating and Cooling"
-                            >
+                            <AmenityList icon={<Wind />} name="Cooling">
                                 <Amenity>Air Conditioning</Amenity>
-                                <Amenity>Portable Fans</Amenity>
+                                <Amenity>Stand Fan</Amenity>
                             </AmenityList>
                             <AmenityList
                                 icon={<Table2 />}
