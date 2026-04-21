@@ -1,9 +1,7 @@
 'use client'
 
-import { ArrowLeft, ArrowRight, Scroll } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { useEffect } from 'react'
-import { getGalleryFoldersFiles } from '../actions/gallery'
 import Spinner from '../components/Spinner'
 import { useGalleryReducer } from '../hooks/useGalleryReducer'
 import Modal from '../components/Modal'
@@ -49,25 +47,7 @@ export default function page() {
     // get selected section index first
     const selectedImagesIndex = images?.indexOf(selected?.image)
 
-    useEffect(() => {
-        const fetchGallery = async () => {
-            // fetch gallery images
-            const galleryImages = await getGalleryFoldersFiles()
-
-            // set images for later use
-            const images: string[] = []
-            galleryImages.forEach((gallery) => {
-                images.push(...gallery.files)
-            })
-
-            dispatch({
-                type: 'gallery/loaded',
-                payload: { gallery: galleryImages, images: images }
-            })
-        }
-        fetchGallery()
-    }, [])
-
+    // check if we have gallery
     if (!gallery) {
         return <Spinner />
     }

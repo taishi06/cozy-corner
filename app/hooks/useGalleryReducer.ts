@@ -1,4 +1,5 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
+import { getGalleryFoldersFiles } from '../actions/gallery'
 
 const initialState: GalleryReducerState = {
     gallery: null,
@@ -38,6 +39,25 @@ export function useGalleryReducer() {
         reducer,
         initialState
     )
+
+    useEffect(() => {
+        const fetchGallery = async () => {
+            // fetch gallery images
+            const galleryImages = await getGalleryFoldersFiles()
+
+            // set images for later use
+            const images: string[] = []
+            galleryImages.forEach((gallery) => {
+                images.push(...gallery.files)
+            })
+
+            dispatch({
+                type: 'gallery/loaded',
+                payload: { gallery: galleryImages, images: images }
+            })
+        }
+        fetchGallery()
+    }, [])
 
     return {
         gallery,
