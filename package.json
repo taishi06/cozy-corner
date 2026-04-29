@@ -11,8 +11,9 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@next/third-parties": "^16.2.4",
         "lucide-react": "^0.575.0",
-        "next": "latest",
+        "next": "^16.2.4",
         "react": "latest"
     },
     "devDependencies": {

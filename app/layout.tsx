@@ -2,6 +2,7 @@
 // import Footer from './components/Footer'
 
 // import { useEffect } from 'react'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import Footer from './components/Footer'
 import Navigation from './components/Navigation'
 import './globals.css'
@@ -59,6 +60,7 @@ export default function RootLayout({
                     </div>
                 </main>
             </body>
+            <GoogleAnalytics gaId="G-LTPB26KW4P" />
         </html>
     )
 }
