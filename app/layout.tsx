@@ -10,6 +10,9 @@ export const metadata = {
     title: 'Cozy Prime Stay - Stay With Us | Travel With Us',
     description:
         'Book your stay with Cozy Prime Stay for beautifully curated accommodations, exceptional comfort, and a welcoming home away from home.',
+    icons: {
+        icon: '/images/favicon/favicon_16x16.png'
+    },
     openGraph: {
         title: 'Cozy Prime Stay - Stay With Us | Travel With Us',
         description:
