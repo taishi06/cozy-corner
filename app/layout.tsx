@@ -7,8 +7,25 @@ import Navigation from './components/Navigation'
 import './globals.css'
 
 export const metadata = {
-    title: 'Cozy Corner - Stay With Us | Travel With Us',
-    description: 'Airbnb hosted by Issa and Ter and explore our journeys.'
+    title: 'Cozy Prime Stay - Stay With Us | Travel With Us',
+    description:
+        'Book your stay with Cozy Prime Stay for beautifully curated accommodations, exceptional comfort, and a welcoming home away from home.',
+    openGraph: {
+        title: 'Cozy Prime Stay - Stay With Us | Travel With Us',
+        description:
+            'Book your stay with Cozy Prime Stay for beautifully curated accommodations, exceptional comfort, and a welcoming home away from home.',
+        url: 'https://cozyprimestay.com',
+        siteName: 'Cozy Prime Stay',
+        images: [
+            {
+                url: '/images/facebook-card.png',
+                width: 1200,
+                height: 630
+            }
+        ],
+        locale: 'en_US',
+        type: 'website'
+    }
 }
 
 export default function RootLayout({
