@@ -20,7 +20,6 @@ export default function App() {
                     <div className="absolute inset-0 bg-stone-900/40 z-10" />
                     <Image
                         fill
-                        quality={80}
                         src="/images/slides/pool-area.jpg"
                         className="object-cover scale-105 animate-slow-zoom"
                         alt="SMDC Leaf Residences pool area"

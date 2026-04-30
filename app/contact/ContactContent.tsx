@@ -30,7 +30,7 @@ export default function ContactContent() {
                             <a
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href="https://www.airbnb.com/rooms/1314407911171467315"
+                                href="http://airbnb.com/h/dcozycorner"
                                 className="flex items-center justify-between w-full p-8 bg-stone-900 text-white hover:bg-stone-800 transition-all group shadow-2xl"
                             >
                                 <div className="flex items-center gap-6">
