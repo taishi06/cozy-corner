@@ -2,6 +2,7 @@
 
 import { ChevronRight, ExternalLink, MessageCircle } from 'lucide-react'
 import ScrollFadeIn from '../components/ScrollFadeIn'
+import Image from 'next/image'
 
 export default function ContactContent() {
     return (
@@ -71,13 +72,17 @@ export default function ContactContent() {
                 </div>
 
                 <div className="hidden md:block">
-                    <div className="relative aspect-[3/4] p-10 border border-stone-200">
+                    <div className="relative aspect-3/4 p-10 border border-stone-200">
                         <ScrollFadeIn>
-                            <img
-                                src="/images/contact-chat.jpeg"
-                                className="w-full h-full object-cover grayscale brightness-90"
-                                alt="The Sanctuary Workspace"
-                            />
+                            <div className="relative overflow-hidden h-screen">
+                                <Image
+                                    fill
+                                    src="/images/contact-chat.jpeg"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 53vw"
+                                    className="object-cover z-0 grayscale brightness-90"
+                                    alt="The Sanctuary Workspace"
+                                />
+                            </div>
                         </ScrollFadeIn>
                         <ScrollFadeIn>
                             <div className="absolute -bottom-10 -right-10 bg-white p-10 shadow-2xl max-w-xs">

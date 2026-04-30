@@ -38,7 +38,7 @@ export default function AboutContent() {
                         <div className="md:col-span-7 relative group overflow-hidden mb-10">
                             <Image
                                 fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 53vw"
                                 src="/images/our-story.jpeg"
                                 className="object-cover w-full grayscale hover:grayscale-0 transition-all duration-1000"
                                 alt="The Sanctuary Interior"

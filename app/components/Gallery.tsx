@@ -73,7 +73,7 @@ export default function Gallery() {
                         <Image
                             src={`/images/gallery/${selected.name}/${selected.image}`}
                             alt={selected.name}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 53vw"
                             fill
                             priority
                             className="object-cover animate-blurFade"
