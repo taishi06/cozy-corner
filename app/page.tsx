@@ -2,7 +2,6 @@
 
 import { Wind, Star } from 'lucide-react'
 import Image from 'next/image'
-import { useRef } from 'react'
 import Stats from '@/app/components/Stats'
 import Link, { LinkProps } from 'next/link'
 import ScrollFadeIn from './components/ScrollFadeIn'
@@ -24,6 +23,8 @@ export default function App() {
                         src="/images/slides/pool-area.jpg"
                         className="object-cover scale-105 animate-slow-zoom"
                         alt="SMDC Leaf Residences pool area"
+                        placeholder="blur"
+                        blurDataURL="/images/slides/pool-area.jpg"
                     />
                     <div className="relative z-20 text-center px-6">
                         <span className="text-white uppercase tracking-[0.5em] text-[10px] md:text-xs mb-6 block font-medium">
@@ -120,17 +121,23 @@ export default function App() {
                         </div>
                         <div className="grid grid-cols-2 gap-6 relative">
                             <div className="relative overflow-hidden aspect-square">
-                                <img
+                                <Image
+                                    fill
                                     src="/images/room/bed-view.jpg"
                                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
                                     alt="Kitchen Detail"
+                                    placeholder="blur"
+                                    blurDataURL="/images/room/bed-view.jpg"
                                 />
                             </div>
                             <div className="relative overflow-hidden aspect-square mt-16">
-                                <img
+                                <Image
+                                    fill
                                     src="/images/room/full-view.jpg"
                                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
                                     alt="Bedroom Detail"
+                                    placeholder="blur"
+                                    blurDataURL="/images/room/full-view.jpg"
                                 />
                             </div>
                         </div>

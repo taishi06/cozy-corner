@@ -78,6 +78,8 @@ export default function ContactContent() {
                                 <Image
                                     fill
                                     src="/images/contact-chat.jpeg"
+                                    placeholder="blur"
+                                    blurDataURL="/images/contact-chat.jpeg"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 53vw"
                                     className="object-cover z-0 grayscale brightness-90"
                                     alt="The Sanctuary Workspace"

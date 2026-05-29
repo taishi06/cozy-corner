@@ -77,6 +77,8 @@ export default function Gallery() {
                             fill
                             priority
                             className="object-cover animate-blurFade"
+                            placeholder="blur"
+                            blurDataURL={`/images/gallery/${selected.name}/${selected.image}`}
                         />
                     }
                 >
@@ -174,6 +176,8 @@ function GalleryImage({
                 width={500}
                 height={400}
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={`/images/gallery/${name}/${image}`}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover w-full h-40 transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
             />
