@@ -6,6 +6,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import Footer from './components/Footer'
 import Navigation from './components/Navigation'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata = {
     title: 'Cozy Prime Stay - Stay With Us | Travel With Us',
@@ -61,6 +62,7 @@ export default function RootLayout({
                 </main>
             </body>
             <GoogleAnalytics gaId="G-LTPB26KW4P" />
+            <Analytics />
         </html>
     )
 }
