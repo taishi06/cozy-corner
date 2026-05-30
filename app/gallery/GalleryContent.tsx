@@ -2,10 +2,13 @@
 
 import Spinner from '../components/Spinner'
 import ScrollFadeIn from '../components/ScrollFadeIn'
-import { Suspense } from 'react'
+import { Suspense, useMemo } from 'react'
 import Gallery from '../components/Gallery'
 
 export default function GalleryContent() {
+    const memoizedGallery = useMemo(() => {
+        return <Gallery />
+    }, [])
     return (
         <>
             <section className="pt-40">
@@ -55,9 +58,7 @@ export default function GalleryContent() {
                     </p>
                 </ScrollFadeIn>
 
-                <Suspense fallback={<Spinner />}>
-                    <Gallery />
-                </Suspense>
+                <Suspense fallback={<Spinner />}>{memoizedGallery}</Suspense>
             </section>
         </>
     )
