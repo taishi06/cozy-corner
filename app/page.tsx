@@ -6,11 +6,6 @@ import Stats from '@/app/components/Stats'
 import Link, { LinkProps } from 'next/link'
 import ScrollFadeIn from './components/ScrollFadeIn'
 
-/**
- * PRODUCTION-READY NEXT.JS STRUCTURE (Single File Entry Point)
- * Includes Tailwind CDN for immediate preview rendering.
- */
-
 export default function App() {
     return (
         <>

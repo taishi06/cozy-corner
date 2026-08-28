@@ -11,7 +11,7 @@ interface JourneySpotProps {
 }
 
 interface GalleryReducerState {
-    gallery: GalleryImage | null
+    gallery: GalleryImage[] | null
     selected: SelectedGallery | null
     images: string[] | null
 }
@@ -24,3 +24,31 @@ interface GalleryImage {
     name?: string
     files?: string[]
 }
+
+interface GalleryFolder {
+    files: string[]
+}
+
+interface GalleryLoadedPayload {
+    gallery: GalleryFolder[]
+    images: string[]
+}
+
+interface GalleryLoadedAction {
+    type: 'gallery/loaded'
+    payload: GalleryLoadedPayload
+}
+
+interface GallerySelectedAction {
+    type: 'gallery/selected'
+    payload: GalleryFolder
+}
+
+interface GalleryUnselectAction {
+    type: 'gallery/unselect'
+}
+
+type GalleryAction =
+    | GalleryLoadedAction
+    | GallerySelectedAction
+    | GalleryUnselectAction

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useGalleryReducer } from '../hooks/useGalleryReducer'
 import { getImageName } from '../utils/helpers'
 import Image from 'next/image'

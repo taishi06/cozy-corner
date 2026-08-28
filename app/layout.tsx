@@ -1,12 +1,9 @@
-// import Navbar from './components/Navbar'
-// import Footer from './components/Footer'
-
-// import { useEffect } from 'react'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/next'
+
 import Footer from './components/Footer'
 import Navigation from './components/Navigation'
 import './globals.css'
-import { Analytics } from '@vercel/analytics/next'
 
 export const metadata = {
     title: 'Cozy Prime Stay - Stay With Us | Travel With Us',

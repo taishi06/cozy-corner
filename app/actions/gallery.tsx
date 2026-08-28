@@ -20,7 +20,7 @@ export async function getGalleryFoldersFiles() {
         })
 
     // get folder's files
-    const gallery = galleryFolders.map((dir, i) => {
+    const gallery = galleryFolders.map((dir) => {
         return {
             name: dir.name,
             files: fs

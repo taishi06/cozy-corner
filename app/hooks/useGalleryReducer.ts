@@ -7,10 +7,7 @@ const initialState: GalleryReducerState = {
     images: null
 }
 
-function reducer(
-    state: GalleryReducerState,
-    action: { type: string; payload?: any }
-) {
+function reducer(state: GalleryReducerState, action: GalleryAction) {
     switch (action.type) {
         case 'gallery/loaded':
             const { gallery, images } = action.payload
@@ -41,9 +38,10 @@ export function useGalleryReducer() {
     )
 
     useEffect(() => {
-        const fetchGallery = async () => {
+        const fetchGallery = async (): Promise<void> => {
             // fetch gallery images
-            const galleryImages = await getGalleryFoldersFiles()
+            const galleryImages: GalleryFolder[] =
+                await getGalleryFoldersFiles()
 
             // set images for later use
             const images: string[] = []
