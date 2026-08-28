@@ -117,8 +117,8 @@ function GallerySection({
     item,
     handleSelect
 }: {
-    item: GalleryImage
-    handleSelect: Function
+    item: GalleryFolder
+    handleSelect: (action: GalleryAction) => void
 }) {
     return (
         <ScrollFadeIn>
@@ -152,7 +152,7 @@ function GalleryImage({
     name: string
     image: string
     files: string[]
-    handleSelect: Function
+    handleSelect: (action: GalleryAction) => void
 }) {
     return (
         <div

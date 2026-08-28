@@ -7,7 +7,10 @@ const initialState: GalleryReducerState = {
     images: null
 }
 
-function reducer(state: GalleryReducerState, action: GalleryAction) {
+function reducer(
+    state: GalleryReducerState,
+    action: GalleryAction
+): GalleryReducerState {
     switch (action.type) {
         case 'gallery/loaded':
             const { gallery, images } = action.payload
