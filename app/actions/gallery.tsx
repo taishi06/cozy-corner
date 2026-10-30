@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { galleryImagePlaceholders } from '../gallery/imagePlaceholders';
 
 export async function getGalleryFoldersFiles() {
 	// get gallery path
@@ -19,13 +20,21 @@ export async function getGalleryFoldersFiles() {
 			return { name: item.name, path: item.parentPath };
 		});
 
-	// get folder's files
+	// get folder's files and their pre-generated blur placeholders
 	const gallery = galleryFolders.map((dir) => {
+		const files = fs
+			.readdirSync(dir.path + '/' + dir.name)
+			.filter((file) => /\.(jpe?g|png)$/i.test(file.toLowerCase()));
+
 		return {
 			name: dir.name,
-			files: fs
-				.readdirSync(dir.path + '/' + dir.name)
-				.filter((file) => /\.(jpe?g|png)$/i.test(file.toLowerCase())),
+			files,
+			blurDataURLs: Object.fromEntries(
+				files.map((file) => [
+					file,
+					galleryImagePlaceholders[`${dir.name}/${file}`],
+				]),
+			),
 		};
 	});
 

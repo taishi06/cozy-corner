@@ -1,24 +1,10 @@
-import { useEffect, useReducer } from 'react'
-import { getGalleryFoldersFiles } from '../actions/gallery'
-
-const initialState: GalleryReducerState = {
-    gallery: null,
-    selected: null,
-    images: null
-}
+import { useReducer } from 'react'
 
 function reducer(
     state: GalleryReducerState,
     action: GalleryAction
 ): GalleryReducerState {
     switch (action.type) {
-        case 'gallery/loaded':
-            const { gallery, images } = action.payload
-            return {
-                ...state,
-                gallery,
-                images
-            }
         case 'gallery/selected':
             return {
                 ...state,
@@ -34,31 +20,16 @@ function reducer(
     }
 }
 
-export function useGalleryReducer() {
+export function useGalleryReducer(initialGallery: GalleryFolder[]) {
     const [{ gallery, selected, images }, dispatch] = useReducer(
         reducer,
-        initialState
+        initialGallery,
+        (gallery): GalleryReducerState => ({
+            gallery,
+            selected: null,
+            images: gallery.flatMap((section) => section.files)
+        })
     )
-
-    useEffect(() => {
-        const fetchGallery = async (): Promise<void> => {
-            // fetch gallery images
-            const galleryImages: GalleryFolder[] =
-                await getGalleryFoldersFiles()
-
-            // set images for later use
-            const images: string[] = []
-            galleryImages.forEach((gallery) => {
-                images.push(...gallery.files)
-            })
-
-            dispatch({
-                type: 'gallery/loaded',
-                payload: { gallery: galleryImages, images: images }
-            })
-        }
-        fetchGallery()
-    }, [])
 
     return {
         gallery,

@@ -1,14 +1,13 @@
 'use client'
 
-import Spinner from '../components/Spinner'
 import ScrollFadeIn from '../components/ScrollFadeIn'
-import { Suspense, useMemo } from 'react'
 import Gallery from '../components/Gallery'
 
-export default function GalleryContent() {
-    const memoizedGallery = useMemo(() => {
-        return <Gallery />
-    }, [])
+export default function GalleryContent({
+    initialGallery
+}: {
+    initialGallery: GalleryFolder[]
+}) {
     return (
         <>
             <section className="pt-40">
@@ -58,7 +57,7 @@ export default function GalleryContent() {
                     </p>
                 </ScrollFadeIn>
 
-                <Suspense fallback={<Spinner />}>{memoizedGallery}</Suspense>
+                <Gallery initialGallery={initialGallery} />
             </section>
         </>
     )

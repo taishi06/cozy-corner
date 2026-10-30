@@ -1,13 +1,18 @@
+import { useState } from 'react'
 import { useGalleryReducer } from '../hooks/useGalleryReducer'
 import { getImageName } from '../utils/helpers'
 import Image from 'next/image'
 import Modal from '../components/Modal'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import Spinner from './Spinner'
 import ScrollFadeIn from '../components/ScrollFadeIn'
 
-export default function Gallery() {
-    const { gallery, selected, images, dispatch } = useGalleryReducer()
+export default function Gallery({
+    initialGallery
+}: {
+    initialGallery: GalleryFolder[]
+}) {
+    const { gallery, selected, images, dispatch } =
+        useGalleryReducer(initialGallery)
 
     // handle modal navigation
     const handleChangeSelected = (direction: string) => {
@@ -32,7 +37,7 @@ export default function Gallery() {
         if (navigateImage) {
             // index the image's gallery
             const imageGallery = gallery.filter(
-                (dir: GalleryImage) => dir.files.indexOf(navigateImage) >= 0
+                (dir: GalleryFolder) => dir.files.indexOf(navigateImage) >= 0
             )
 
             dispatch({
@@ -43,23 +48,17 @@ export default function Gallery() {
     }
 
     // get selected section index first
-    const selectedImagesIndex = images?.indexOf(selected?.image)
-
-    if (!gallery) {
-        return <Spinner />
-    }
+    const selectedImagesIndex = images.indexOf(selected?.image)
 
     return (
         <>
-            {gallery.map(
-                (item: { name: string; files: string[] }, i: number) => (
-                    <GallerySection
-                        item={item}
-                        key={item.name}
-                        handleSelect={dispatch}
-                    />
-                )
-            )}
+            {gallery.map((item: GalleryFolder) => (
+                <GallerySection
+                    item={item}
+                    key={item.name}
+                    handleSelect={dispatch}
+                />
+            ))}
 
             {/* MODAL */}
             {selected && (
@@ -68,15 +67,15 @@ export default function Gallery() {
                         dispatch({ type: 'gallery/unselect' })
                     }
                     modalContent={
-                        <Image
+                        <GalleryModalImage
+                            key={`${selected.name}/${selected.image}`}
                             src={`/images/gallery/${selected.name}/${selected.image}`}
                             alt={selected.name}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 53vw"
-                            fill
-                            priority
-                            className="object-cover animate-blurFade"
-                            placeholder="blur"
-                            blurDataURL={`/images/gallery/${selected.name}/${selected.image}`}
+                            blurDataURL={
+                                gallery.find(
+                                    (item) => item.name === selected.name
+                                )?.blurDataURLs[selected.image]
+                            }
                         />
                     }
                 >
@@ -113,6 +112,54 @@ export default function Gallery() {
     )
 }
 
+function GalleryModalImage({
+    src,
+    alt,
+    blurDataURL
+}: {
+    src: string
+    alt: string
+    blurDataURL?: string
+}) {
+    const [loaded, setLoaded] = useState(false)
+    const [failed, setFailed] = useState(false)
+
+    return (
+        <>
+            {!loaded && !failed && (
+                <div
+                    className="absolute inset-0 z-10 flex items-center justify-center bg-black/10"
+                    role="status"
+                    aria-label="Loading image"
+                >
+                    <div className="h-10 w-10 animate-spin rounded-full border-4 border-white/40 border-t-white" />
+                </div>
+            )}
+            {failed ? (
+                <div
+                    className="absolute inset-0 flex items-center justify-center bg-black/60 text-white"
+                    role="alert"
+                >
+                    This image couldn&apos;t be loaded.
+                </div>
+            ) : (
+                <Image
+                    src={src}
+                    alt={alt}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 53vw"
+                    fill
+                    priority
+                    placeholder={blurDataURL ? 'blur' : 'empty'}
+                    blurDataURL={blurDataURL}
+                    onLoad={() => setLoaded(true)}
+                    onError={() => setFailed(true)}
+                    className="object-cover"
+                />
+            )}
+        </>
+    )
+}
+
 function GallerySection({
     item,
     handleSelect
@@ -134,6 +181,7 @@ function GallerySection({
                             name={item.name}
                             image={dir}
                             files={item.files}
+                            blurDataURL={item.blurDataURLs[dir]}
                             key={i}
                         />
                     ))}
@@ -147,11 +195,13 @@ function GalleryImage({
     name,
     image,
     files,
+    blurDataURL,
     handleSelect
 }: {
     name: string
     image: string
     files: string[]
+    blurDataURL?: string
     handleSelect: (action: GalleryAction) => void
 }) {
     return (
@@ -174,9 +224,9 @@ function GalleryImage({
                 width={500}
                 height={400}
                 loading="lazy"
-                placeholder="blur"
-                blurDataURL={`/images/gallery/${name}/${image}`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                placeholder={blurDataURL ? 'blur' : 'empty'}
+                blurDataURL={blurDataURL}
+                sizes="(max-width: 767px) calc(50vw - 2rem), (max-width: 1023px) calc(25vw - 3rem), 21vw"
                 className="object-cover w-full h-40 transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
             />
 
